@@ -1,16 +1,20 @@
 package main
 
-import "strconv"
+import (
+	"strconv"
+	"strings"
+)
 
 func Add(numbers string) int {
-	var sum int
-	switch len(numbers) {
-	case 0:
+	sum := 0
+	if numbers == "" {
 		sum = 0
-	case 1:
-		n, err := strconv.Atoi(numbers)
+	}
+	inputs := strings.Split(numbers, ",")
+	for _, input := range inputs {
+		n, err := strconv.Atoi(input)
 		if err == nil {
-			sum = n
+			sum += n
 		} else {
 			//TODO
 		}
