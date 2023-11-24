@@ -8,3 +8,7 @@ import (
 func TestAddWithInputEmptyString(t *testing.T) {
 	assert.Equal(t, 0, Add(""))
 }
+
+func TestAddWithInputOneNumber(t *testing.T) {
+	assert.Equal(t, 4, Add("4"))
+}
