@@ -12,3 +12,7 @@ func TestAddWithInputEmptyString(t *testing.T) {
 func TestAddWithInputOneNumber(t *testing.T) {
 	assert.Equal(t, 4, Add("4"))
 }
+
+func TestAddWithIputTwoNumber(t *testing.T) {
+	assert.Equal(t, 16, Add("9,7"))
+}
