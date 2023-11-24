@@ -8,7 +8,7 @@ import (
 func Add(numbers string) int {
 	sum := 0
 	if numbers == "" {
-		sum = 0
+		return 0
 	}
 	inputs := strings.Split(numbers, ",")
 	for _, input := range inputs {
