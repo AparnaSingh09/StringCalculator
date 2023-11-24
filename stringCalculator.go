@@ -1,9 +1,20 @@
 package main
 
+import "strconv"
+
 func Add(numbers string) int {
-	if len(numbers) == 0 {
-		return 0
-	} else {
-		return 1
+	var sum int
+	switch len(numbers) {
+	case 0:
+		sum = 0
+	case 1:
+		n, err := strconv.Atoi(numbers)
+		if err == nil {
+			sum = n
+		} else {
+			//TODO
+		}
+
 	}
+	return sum
 }
