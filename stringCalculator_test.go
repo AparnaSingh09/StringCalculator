@@ -20,3 +20,7 @@ func TestAddWithIputTwoNumbers(t *testing.T) {
 func TestAddWithInputThreeNumbers(t *testing.T) {
 	assert.Equal(t, 7, Add("2,3,2"))
 }
+
+func TestAddWithNewLineInInput(t *testing.T) {
+	assert.Equal(t, 6, Add("1\n2,3"))
+}
