@@ -13,6 +13,10 @@ func TestAddWithInputOneNumber(t *testing.T) {
 	assert.Equal(t, 4, Add("4"))
 }
 
-func TestAddWithIputTwoNumber(t *testing.T) {
+func TestAddWithIputTwoNumbers(t *testing.T) {
 	assert.Equal(t, 16, Add("9,7"))
+}
+
+func TestAddWithInputThreeNumbers(t *testing.T) {
+	assert.Equal(t, 7, Add("2,3,2"))
 }
