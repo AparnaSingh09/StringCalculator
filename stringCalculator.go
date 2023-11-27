@@ -12,13 +12,23 @@ func Add(numbers string) int {
 	}
 	inputs := strings.Split(numbers, ",")
 	for _, input := range inputs {
-		n, err := strconv.Atoi(input)
-		if err == nil {
-			sum += n
+		if strings.Contains(input, "\n") {
+			values := strings.Split(input, "\n")
+			for _, value := range values {
+				calculateSum(value, &sum)
+			}
 		} else {
-			//TODO
+			calculateSum(input, &sum)
 		}
-
 	}
 	return sum
+}
+
+func calculateSum(value string, sum *int) {
+	n, err := strconv.Atoi(value)
+	if err == nil {
+		*sum += n
+	} else {
+		//TODO
+	}
 }
