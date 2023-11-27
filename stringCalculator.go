@@ -10,25 +10,34 @@ func Add(numbers string) int {
 	if numbers == "" {
 		return 0
 	}
-	inputs := strings.Split(numbers, ",")
-	for _, input := range inputs {
-		if strings.Contains(input, "\n") {
-			values := strings.Split(input, "\n")
-			for _, value := range values {
-				calculateSum(value, &sum)
-			}
-		} else {
-			calculateSum(input, &sum)
-		}
+
+	if strings.Contains(numbers, "//") {
+		delimiter := IdentifyDelimiter(numbers)
+		calculateSum(numbers, &sum, delimiter)
+
+	} else {
+		calculateSum(numbers, &sum, ",")
 	}
 	return sum
 }
 
-func calculateSum(value string, sum *int) {
-	n, err := strconv.Atoi(value)
-	if err == nil {
-		*sum += n
-	} else {
-		//TODO
+func IdentifyDelimiter(numbers string) string {
+	values := strings.Split(strings.Trim(numbers, "//"), "\n")
+	return values[0]
+
+}
+
+func calculateSum(numbers string, sum *int, delimiter string) {
+	inputs := strings.Split(numbers, delimiter)
+	for _, input := range inputs {
+		values := strings.Split(input, "\n")
+		for _, value := range values {
+			n, err := strconv.Atoi(value)
+			if err == nil {
+				*sum += n
+			} else {
+				//TODO
+			}
+		}
 	}
 }
