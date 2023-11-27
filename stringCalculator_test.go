@@ -24,3 +24,8 @@ func TestAddWithInputThreeNumbers(t *testing.T) {
 func TestAddWithNewLineInInput(t *testing.T) {
 	assert.Equal(t, 6, Add("1\n2,3"))
 }
+
+func TestAddWithDifferentDelimiters(t *testing.T) {
+	assert.Equal(t, 3, Add("//;\n1;2"))
+
+}
