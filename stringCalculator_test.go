@@ -29,3 +29,12 @@ func TestAddWithDifferentDelimiters(t *testing.T) {
 	assert.Equal(t, 3, Add("//;\n1;2"))
 
 }
+
+func TestIdentifyDelimiter(t *testing.T) {
+	assert.Equal(t, ";", IdentifyDelimiter("//;\n1;2"))
+}
+
+func TestIdentifyDelimiter1(t *testing.T) {
+	assert.Equal(t, 6, Add("//***\n1***2***3"))
+
+}
