@@ -19,7 +19,6 @@ func Add(numbers string) (int, error) {
 		if err != nil {
 			return 0, err
 		}
-
 	} else {
 		err := calculateSum(numbers, &sum, []string{","})
 		if err != nil {
@@ -32,14 +31,13 @@ func Add(numbers string) (int, error) {
 func identifyDelimiters(numbers string) []string {
 	delimiters := []string{}
 	values := strings.Split(strings.Trim(numbers, "//"), "\n")
-	va := strings.Split(values[0], "[")
-	for _, j := range va {
-		if j != "" {
-			delimiters = append(delimiters, strings.Split(j, "]")[0])
+	strArr := strings.Split(values[0], "[")
+	for _, str := range strArr {
+		if str != "" {
+			delimiters = append(delimiters, strings.Split(str, "]")[0])
 		}
 
 	}
-	fmt.Println(delimiters)
 	return delimiters
 
 }
@@ -53,7 +51,6 @@ func splitAny(s string, delimiters []string) []string {
 }
 
 func calculateSum(numbers string, sum *int, delimiters []string) error {
-
 	inputs := splitAny(numbers, delimiters)
 	inputArr := []string{}
 	for _, input := range inputs {

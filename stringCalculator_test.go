@@ -41,7 +41,7 @@ func TestIdentifyDelimiters(t *testing.T) {
 	assert.Equal(t, 1, len(delimiters))
 }
 
-func TestAddWithDifferentDelimiters2(t *testing.T) {
+func TestAddWithDelimiterLengthMoreThan1Char(t *testing.T) {
 	sum, _ := Add("//***\n1***2***3")
 	assert.Equal(t, 6, sum)
 
@@ -49,7 +49,6 @@ func TestAddWithDifferentDelimiters2(t *testing.T) {
 
 func TestAddWithNegativeNumberInInput(t *testing.T) {
 	_, err := Add("2,-2,-4")
-
 	expectedErr := "negatives not allowed: [-2 -4]"
 	assert.EqualError(t, err, expectedErr)
 }
@@ -62,4 +61,9 @@ func TestAddWithInputBiggerThanThousand(t *testing.T) {
 func TestAddWithMultipleDelimiters(t *testing.T) {
 	sum, _ := Add("//[*][%]\n1*2%3")
 	assert.Equal(t, 6, sum)
+}
+
+func TestAddWithMultipleDelimitersWithLengthLongerThan1Char(t *testing.T) {
+	sum, _ := Add("//[*][#][%]\n1****2###3\n%%1")
+	assert.Equal(t, 7, sum)
 }
