@@ -54,6 +54,11 @@ func TestAddWithNegativeNumberInInput(t *testing.T) {
 }
 
 func TestAddWithInputBiggerThanThousand(t *testing.T) {
-	sum, _ := Add("2,1001")
+	sum, _ := Add("2,1001,1004")
 	assert.Equal(t, 2, sum)
+}
+
+func TestAddWithMultipleDelimiters(t *testing.T) {
+	sum, _ := Add("//[***]\\n1***2***3")
+	assert.Equal(t, 6, sum)
 }
