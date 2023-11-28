@@ -6,27 +6,33 @@ import (
 )
 
 func TestAddWithInputEmptyString(t *testing.T) {
-	assert.Equal(t, 0, Add(""))
+	sum, _ := Add("")
+	assert.Equal(t, 0, sum)
 }
 
 func TestAddWithInputOneNumber(t *testing.T) {
-	assert.Equal(t, 4, Add("4"))
+	sum, _ := Add("4")
+	assert.Equal(t, 4, sum)
 }
 
 func TestAddWithIputTwoNumbers(t *testing.T) {
-	assert.Equal(t, 16, Add("9,7"))
+	sum, _ := Add("9,7")
+	assert.Equal(t, 16, sum)
 }
 
 func TestAddWithInputThreeNumbers(t *testing.T) {
-	assert.Equal(t, 7, Add("2,3,2"))
+	sum, _ := Add("2,3,2")
+	assert.Equal(t, 7, sum)
 }
 
 func TestAddWithNewLineInInput(t *testing.T) {
-	assert.Equal(t, 6, Add("1\n2,3"))
+	sum, _ := Add("1\n2,3")
+	assert.Equal(t, 6, sum)
 }
 
 func TestAddWithDifferentDelimiters(t *testing.T) {
-	assert.Equal(t, 3, Add("//;\n1;2"))
+	sum, _ := Add("//;\n1;2")
+	assert.Equal(t, 3, sum)
 
 }
 
@@ -34,7 +40,15 @@ func TestIdentifyDelimiter(t *testing.T) {
 	assert.Equal(t, ";", IdentifyDelimiter("//;\n1;2"))
 }
 
-func TestIdentifyDelimiter1(t *testing.T) {
-	assert.Equal(t, 6, Add("//***\n1***2***3"))
+func TestAddWithDifferentDelimiters2(t *testing.T) {
+	sum, _ := Add("//***\n1***2***3")
+	assert.Equal(t, 6, sum)
 
+}
+
+func TestAddWithNegativeNumberInInput(t *testing.T) {
+	_, err := Add("2,-2,-4")
+
+	expectedErr := "negatives not allowed -2,-4"
+	assert.EqualError(t, err, expectedErr)
 }

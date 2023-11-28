@@ -5,10 +5,10 @@ import (
 	"strings"
 )
 
-func Add(numbers string) int {
+func Add(numbers string) (int, error) {
 	sum := 0
 	if numbers == "" {
-		return 0
+		return 0, nil
 	}
 
 	if strings.Contains(numbers, "//") {
@@ -18,7 +18,7 @@ func Add(numbers string) int {
 	} else {
 		calculateSum(numbers, &sum, ",")
 	}
-	return sum
+	return sum, nil
 }
 
 func IdentifyDelimiter(numbers string) string {
