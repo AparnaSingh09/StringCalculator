@@ -52,3 +52,8 @@ func TestAddWithNegativeNumberInInput(t *testing.T) {
 	expectedErr := "negatives not allowed: [-2 -4]"
 	assert.EqualError(t, err, expectedErr)
 }
+
+func TestAddWithInputBiggerThanThousand(t *testing.T) {
+	sum, _ := Add("2,1001")
+	assert.Equal(t, 2, sum)
+}
