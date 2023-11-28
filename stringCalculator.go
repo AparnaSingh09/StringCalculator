@@ -44,7 +44,7 @@ func calculateSum(numbers string, sum *int, delimiter string) error {
 			if n < 0 {
 				return identifyNegatives(inputs)
 			}
-			if err == nil {
+			if err == nil && n < 1000 {
 				*sum += n
 			} else {
 				//TODO
