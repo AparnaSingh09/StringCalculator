@@ -37,7 +37,7 @@ func TestAddWithDifferentDelimiters(t *testing.T) {
 }
 
 func TestIdentifyDelimiter(t *testing.T) {
-	assert.Equal(t, ";", IdentifyDelimiter("//;\n1;2"))
+	assert.Equal(t, ";", identifyDelimiter("//;\n1;2"))
 }
 
 func TestAddWithDifferentDelimiters2(t *testing.T) {
@@ -49,6 +49,6 @@ func TestAddWithDifferentDelimiters2(t *testing.T) {
 func TestAddWithNegativeNumberInInput(t *testing.T) {
 	_, err := Add("2,-2,-4")
 
-	expectedErr := "negatives not allowed -2,-4"
+	expectedErr := "negatives not allowed: [-2 -4]"
 	assert.EqualError(t, err, expectedErr)
 }
