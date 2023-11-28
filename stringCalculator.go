@@ -14,14 +14,14 @@ func Add(numbers string) (int, error) {
 	}
 
 	if strings.Contains(numbers, "//") {
-		delimiter := identifyDelimiter(numbers)
-		err := calculateSum(numbers, &sum, delimiter)
+		delimiters := identifyDelimiters(numbers)
+		err := calculateSum(numbers, &sum, delimiters)
 		if err != nil {
 			return 0, err
 		}
 
 	} else {
-		err := calculateSum(numbers, &sum, ",")
+		err := calculateSum(numbers, &sum, []string{","})
 		if err != nil {
 			return 0, err
 		}
@@ -29,26 +29,49 @@ func Add(numbers string) (int, error) {
 	return sum, nil
 }
 
-func identifyDelimiter(numbers string) string {
+func identifyDelimiters(numbers string) []string {
+	delimiters := []string{}
 	values := strings.Split(strings.Trim(numbers, "//"), "\n")
-	return values[0]
+	va := strings.Split(values[0], "[")
+	for _, j := range va {
+		if j != "" {
+			delimiters = append(delimiters, strings.Split(j, "]")[0])
+		}
+
+	}
+	fmt.Println(delimiters)
+	return delimiters
 
 }
 
-func calculateSum(numbers string, sum *int, delimiter string) error {
-	inputs := strings.Split(numbers, delimiter)
+func splitAny(s string, delimiters []string) []string {
+	seps := strings.Join(delimiters, "")
+	splitter := func(r rune) bool {
+		return strings.ContainsRune(seps, r)
+	}
+	return strings.FieldsFunc(s, splitter)
+}
+
+func calculateSum(numbers string, sum *int, delimiters []string) error {
+
+	inputs := splitAny(numbers, delimiters)
+	inputArr := []string{}
 	for _, input := range inputs {
-		values := strings.Split(input, "\n")
-		for _, value := range values {
-			n, err := strconv.Atoi(value)
-			if n < 0 {
-				return identifyNegatives(inputs)
-			}
-			if err == nil && n < 1000 {
-				*sum += n
-			} else {
-				//TODO
-			}
+		strArr := strings.Split(input, "\n")
+		for _, str := range strArr {
+			inputArr = append(inputArr, str)
+		}
+	}
+
+	for _, value := range inputArr {
+		n, err := strconv.Atoi(value)
+		if n < 0 {
+			return identifyNegatives(inputs)
+		}
+		if err == nil && n < 1000 {
+			*sum += n
+		} else {
+			//TODO
 		}
 	}
 	return nil

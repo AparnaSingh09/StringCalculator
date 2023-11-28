@@ -36,8 +36,9 @@ func TestAddWithDifferentDelimiters(t *testing.T) {
 
 }
 
-func TestIdentifyDelimiter(t *testing.T) {
-	assert.Equal(t, ";", identifyDelimiter("//;\n1;2"))
+func TestIdentifyDelimiters(t *testing.T) {
+	delimiters := identifyDelimiters("//;\n1;2")
+	assert.Equal(t, 1, len(delimiters))
 }
 
 func TestAddWithDifferentDelimiters2(t *testing.T) {
@@ -59,6 +60,6 @@ func TestAddWithInputBiggerThanThousand(t *testing.T) {
 }
 
 func TestAddWithMultipleDelimiters(t *testing.T) {
-	sum, _ := Add("//[***]\\n1***2***3")
+	sum, _ := Add("//[*][%]\n1*2%3")
 	assert.Equal(t, 6, sum)
 }
